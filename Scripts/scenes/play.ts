@@ -215,21 +215,7 @@ module scenes {
             console.log("Added Player to Scene");
         }
 
-        /**
-         * Add the death plane to the scene
-         * 
-         * @method addDeathPlane
-         * @return void
-         */
-        private addDeathPlane(): void {
-            this.deathPlaneGeometry = new BoxGeometry(100, 1, 100);
-            this.deathPlaneMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
-
-            this.deathPlane = new Physijs.BoxMesh(this.deathPlaneGeometry, this.deathPlaneMaterial, 0);
-            this.deathPlane.position.set(0, -10, 0);
-            this.deathPlane.name = "DeathPlane";
-            this.add(this.deathPlane);
-        }
+       
         /**
          * Add the death plane to the scene
          * 
@@ -287,6 +273,22 @@ module scenes {
             var randomPointZ: number = Math.floor(Math.random() * 20) - 10;
             coin.position.set(randomPointX, 10, randomPointZ);
             this.add(coin);
+        }
+         /**
+         * Add the Next Level Cube to the scene
+         * 
+         * @method addNextLevelCube
+         * @return void
+         */
+        private addNextLevelCube(): void {
+            this.nextLevelCubeGeometry = new BoxGeometry(2, 2, 2);
+            this.nextLevelCubeMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
+
+            this.nextLevelCube = new Physijs.BoxMesh(this.nextLevelCubeGeometry, this.nextLevelCubeMaterial, 0);
+            this.nextLevelCube.position.set(5, 2, 0);
+            this.nextLevelCube.name = "NextLevel";
+            this.add(this.nextLevelCube);
+            console.log("Next Level Cube Loaded");
         }
 
         /**
@@ -468,6 +470,9 @@ module scenes {
 
             // Add death plane to the scene
             this.addDeathPlane();
+            
+            // Add death plane to the scene
+            this.addNextLevelCube();
 
             // Collision Check
 

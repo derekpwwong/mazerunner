@@ -170,20 +170,6 @@ var scenes;
             this.add(this.deathPlane);
         };
         /**
-         * Add the death plane to the scene
-         *
-         * @method addDeathPlane
-         * @return void
-         */
-        Play.prototype.addDeathPlane = function () {
-            this.deathPlaneGeometry = new BoxGeometry(100, 1, 100);
-            this.deathPlaneMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
-            this.deathPlane = new Physijs.BoxMesh(this.deathPlaneGeometry, this.deathPlaneMaterial, 0);
-            this.deathPlane.position.set(0, -10, 0);
-            this.deathPlane.name = "DeathPlane";
-            this.add(this.deathPlane);
-        };
-        /**
          * This method adds a coin to the scene
          *
          * @method addCoinMesh
@@ -217,6 +203,21 @@ var scenes;
             var randomPointZ = Math.floor(Math.random() * 20) - 10;
             coin.position.set(randomPointX, 10, randomPointZ);
             this.add(coin);
+        };
+        /**
+        * Add the Next Level Cube to the scene
+        *
+        * @method addNextLevelCube
+        * @return void
+        */
+        Play.prototype.addNextLevelCube = function () {
+            this.nextLevelCubeGeometry = new BoxGeometry(2, 2, 2);
+            this.nextLevelCubeMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
+            this.nextLevelCube = new Physijs.BoxMesh(this.nextLevelCubeGeometry, this.nextLevelCubeMaterial, 0);
+            this.nextLevelCube.position.set(5, 2, 0);
+            this.nextLevelCube.name = "NextLevel";
+            this.add(this.nextLevelCube);
+            console.log("Next Level Cube Loaded");
         };
         /**
          * Event Handler method for any pointerLockChange events
@@ -370,6 +371,8 @@ var scenes;
             this.addCoinMesh();
             // Add death plane to the scene
             this.addDeathPlane();
+            // Add death plane to the scene
+            this.addNextLevelCube();
             // Collision Check
             this.player.addEventListener('collision', function (eventObject) {
                 if (eventObject.name === "Ground") {

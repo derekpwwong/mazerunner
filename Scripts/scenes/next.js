@@ -55,7 +55,7 @@ var scenes;
          * @return void
          */
         Next.prototype.start = function () {
-            this._gameNextLabel = new createjs.Text("GAME Next", "80px Consolas", "#000000");
+            this._gameNextLabel = new createjs.Text("Next Level", "80px Consolas", "#000000");
             this._gameNextLabel.regX = this._gameNextLabel.getMeasuredWidth() * 0.5;
             this._gameNextLabel.regY = this._gameNextLabel.getMeasuredLineHeight() * 0.5;
             this._gameNextLabel.x = config.Screen.WIDTH * 0.5;

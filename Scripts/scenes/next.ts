@@ -60,7 +60,7 @@ module scenes {
          */
         public start(): void {
             this._gameNextLabel = new createjs.Text(
-                "GAME Next",
+                "Next Level",
                 "80px Consolas",
                 "#000000");
             this._gameNextLabel.regX = this._gameNextLabel.getMeasuredWidth() * 0.5;
