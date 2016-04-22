@@ -36,6 +36,10 @@ module scenes {
         private deathPlaneGeometry: CubeGeometry;
         private deathPlaneMaterial: Physijs.Material;
         private deathPlane: Physijs.Mesh;
+        private nextLevelCubeGeometry: CubeGeometry;
+        private nextLevelCubeMaterial: Physijs.Material;
+        private nextLevelCube: Physijs.Mesh;
+        
 
         private velocity: Vector3;
         private prevTime: number;
@@ -203,7 +207,7 @@ module scenes {
             this.playerMaterial = Physijs.createMaterial(new LambertMaterial({ color: 0x00ff00 }), 0.4, 0);
 
             this.player = new Physijs.BoxMesh(this.playerGeometry, this.playerMaterial, 1);
-            this.player.position.set(0, 30, 10);
+            this.player.position.set(0, 10, 0);
             this.player.receiveShadow = true;
             this.player.castShadow = true;
             this.player.name = "Player";
@@ -211,6 +215,21 @@ module scenes {
             console.log("Added Player to Scene");
         }
 
+        /**
+         * Add the death plane to the scene
+         * 
+         * @method addDeathPlane
+         * @return void
+         */
+        private addDeathPlane(): void {
+            this.deathPlaneGeometry = new BoxGeometry(100, 1, 100);
+            this.deathPlaneMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
+
+            this.deathPlane = new Physijs.BoxMesh(this.deathPlaneGeometry, this.deathPlaneMaterial, 0);
+            this.deathPlane.position.set(0, -10, 0);
+            this.deathPlane.name = "DeathPlane";
+            this.add(this.deathPlane);
+        }
         /**
          * Add the death plane to the scene
          * 

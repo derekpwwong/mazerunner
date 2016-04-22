@@ -170,6 +170,20 @@ var scenes;
             this.add(this.deathPlane);
         };
         /**
+         * Add the death plane to the scene
+         *
+         * @method addDeathPlane
+         * @return void
+         */
+        Play.prototype.addDeathPlane = function () {
+            this.deathPlaneGeometry = new BoxGeometry(100, 1, 100);
+            this.deathPlaneMaterial = Physijs.createMaterial(new MeshBasicMaterial({ color: 0xff0000 }), 0.4, 0.6);
+            this.deathPlane = new Physijs.BoxMesh(this.deathPlaneGeometry, this.deathPlaneMaterial, 0);
+            this.deathPlane.position.set(0, -10, 0);
+            this.deathPlane.name = "DeathPlane";
+            this.add(this.deathPlane);
+        };
+        /**
          * This method adds a coin to the scene
          *
          * @method addCoinMesh
