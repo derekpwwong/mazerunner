@@ -71,18 +71,25 @@ var scenes;
             // initialize  score and lives values
             this.scoreValue = 0;
             this.livesValue = 1;
+            this.levelValue = 0;
             // Add Lives Label
-            this.livesLabel = new createjs.Text("LIVES: " + this.livesValue, "40px Consolas", "#ffffff");
+            this.livesLabel = new createjs.Text("LIVES: " + this.livesValue, "32px Consolas", "#ffffff");
             this.livesLabel.x = config.Screen.WIDTH * 0.1;
             this.livesLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
             this.stage.addChild(this.livesLabel);
             console.log("Added Lives Label to stage");
             // Add Score Label
-            this.scoreLabel = new createjs.Text("SCORE: " + this.scoreValue, "40px Consolas", "#ffffff");
+            this.scoreLabel = new createjs.Text("SCORE: " + this.scoreValue, "32px Consolas", "#ffffff");
             this.scoreLabel.x = config.Screen.WIDTH * 0.8;
             this.scoreLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
             this.stage.addChild(this.scoreLabel);
             console.log("Added Score Label to stage");
+            // Add Score Label
+            this.levelLabel = new createjs.Text("Level: " + this.levelValue, "32px Consolas", "#ffffff");
+            this.levelLabel.x = config.Screen.WIDTH * 0.4;
+            this.levelLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
+            this.stage.addChild(this.levelLabel);
+            console.log("Added Level Label to stage");
         };
         /**
          * Add a spotLight to the scene
@@ -406,6 +413,27 @@ var scenes;
                         this.add(this.player);
                     }
                 }
+                if (eventObject.name === "NextLevel") {
+                    createjs.Sound.play("hit");
+                    this.levelValue++;
+                    if (this.levelValue == 4) {
+                        // Exit Pointer Lock
+                        // document.exitPointerLock();
+                        this.children = []; // an attempt to clean up
+                        // this._isGamePaused = true;
+                        // Play the Game Over Scene
+                        currentScene = config.Scene.NEXT;
+                        changeScene();
+                        console.log("Congratulations for winning!");
+                    }
+                    else {
+                        // otherwise reset my player and update Lives
+                        this.levelLabel.text = "Level: " + this.levelValue;
+                        this.remove(this.player);
+                        this.player.position.set(0, 30, 10);
+                        this.add(this.player);
+                    }
+                }
             }.bind(this));
             // create parent-child relationship with camera and player
             this.player.add(camera);
@@ -450,6 +478,8 @@ var scenes;
             canvas.style.width = "100%";
             this.livesLabel.x = config.Screen.WIDTH * 0.1;
             this.livesLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
+            this.levelLabel.x = config.Screen.WIDTH * 0.4;
+            this.levelLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
             this.scoreLabel.x = config.Screen.WIDTH * 0.8;
             this.scoreLabel.y = (config.Screen.HEIGHT * 0.15) * 0.20;
             this.stage.update();

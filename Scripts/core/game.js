@@ -40,6 +40,7 @@ var camera;
 var play;
 var menu;
 var over;
+var next;
 var stats;
 var canvas;
 var assets;
@@ -134,6 +135,12 @@ function changeScene() {
             break;
         case config.Scene.PLAY:
             // show the PLAY scene
+            play = new scenes.Play();
+            scene = play;
+            console.log("Starting PLAY Scene");
+            break;
+        case config.Scene.NEXT:
+            // show the NEXT scene
             play = new scenes.Play();
             scene = play;
             console.log("Starting PLAY Scene");

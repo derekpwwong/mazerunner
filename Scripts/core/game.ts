@@ -51,6 +51,7 @@ var camera: PerspectiveCamera;
 var play: scenes.Play;
 var menu: scenes.Menu;
 var over: scenes.Over;
+var next: scenes.Next;
 
 var stats: Stats;
 var canvas: HTMLElement;
@@ -166,6 +167,12 @@ function changeScene(): void {
             break;
         case config.Scene.PLAY:
             // show the PLAY scene
+            play = new scenes.Play();
+            scene = play;
+            console.log("Starting PLAY Scene");
+            break;
+        case config.Scene.NEXT:
+            // show the NEXT scene
             play = new scenes.Play();
             scene = play;
             console.log("Starting PLAY Scene");
